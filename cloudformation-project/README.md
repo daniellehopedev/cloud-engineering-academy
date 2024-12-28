@@ -2,5 +2,6 @@
 
 In this project, we are building out the architecture of the Bastion Host project using IaC with CloudFormation.
 
-<!-- TODO: add architecture image -->
+![alt text] (/images/cloudformation-project-architecture.png)
+
 <!-- TODO: add architecture summary -->

@@ -159,7 +159,7 @@ Resources:
         - !Ref EC2App1aSG
       Tags:
         - Key: Name
-          Value: App1A
+          Value: EC2App1A
 
   # EC2App1aSG
   EC2App1aSG:
@@ -184,7 +184,7 @@ Resources:
         - !Ref EC2App1bSG
       Tags:
         - Key: Name
-          Value: App1B
+          Value: EC2App1B
 
   # EC2App1bSG
   EC2App1bSG:
