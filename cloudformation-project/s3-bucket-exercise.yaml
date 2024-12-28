@@ -1,0 +1,7 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Cloudformation template for Creating an S3 Bucket'
+Resources:
+  CfS3ExerciseBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: 'cloudformation-s3-exercise-bucket'
