@@ -2,6 +2,8 @@
 
 In this project, we are building out the architecture of the Bastion Host project using IaC with CloudFormation.
 
+The code for this is found in [vpc.yaml](/cloudformation-project/vpc.yaml)
+
 #### CloudFormation Architecture
 
 ![CloudFormation Architecture](./images/cloudformation-project-architecture.png)
