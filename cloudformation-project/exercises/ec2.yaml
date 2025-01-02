@@ -121,79 +121,86 @@ Resources:
       SubnetId: !Ref PublicSubnet1A
       RouteTableId: !Ref PublicRouteTable
 
-  # Bastion Host EC2
-  BastionHost:
+  # Application Load Balancer
+  MyLoadBalancer:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      Subnets:
+        - !Ref PublicSubnet1A
+        - !Ref PublicSubnet1B
+      SecurityGroups:
+        - !Ref WebServerSecurityGroup # not created yet
+
+  # Target Group for ALB
+  MyTargetGroup:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      VpcId: !Ref MyVPC
+      Port: 80
+      Protocol: HTTP
+      Targets:
+        - Id: !Ref WebServerInstance1A
+        - Id: !Ref WebServerInstance1B
+
+  # Listener for ALB
+  MyListener:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref MyTargetGroup
+      LoadBalancerArn: !Ref MyLoadBalancer
+      Port: 80
+      Protocol: HTTP
+
+  # Web Server / ALB Security Group
+  WebServerSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: 'Enable HTTP Access'
+      VpcId: !Ref MyVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: '0.0.0.0/0'
+
+  # WebServerInstance1A:
+  WebServerInstance1A:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: t2.micro
-      KeyName: bastion-kp
-      ImageId: ami-01816d07b1128cd2d
+      InstanceType: 't2.micro'
+      ImageId: 'ami-01816d07b1128cd2d'
       SubnetId: !Ref PublicSubnet1A
       SecurityGroupIds:
-        - !Ref BastionSG
+        - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: BastionHost
+          Value: WebServerInstance1A
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Hello from My Web Server 1A" > /var/www/html/index.html
 
-  # Bastion Security Group
-  BastionSG:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupDescription: 'Enable SSH access'
-      VpcId: !Ref MyVPC
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          CidrIp: <local-ip-address>
-
-  # AppInstance1A
-  AppInstance1A:
+  # WebServerInstance1B:
+  WebServerInstance1B:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: t2.micro
-      KeyName: bastion-kp
-      ImageId: ami-01816d07b1128cd2d
-      SubnetId: !Ref AppPrivateSubnet1A
+      InstanceType: 't2.micro'
+      ImageId: 'ami-01816d07b1128cd2d'
+      SubnetId: !Ref PublicSubnet1B
       SecurityGroupIds:
-        - !Ref EC2App1aSG
+        - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: EC2App1A
-
-  # EC2App1aSG
-  EC2App1aSG:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupDescription: 'Allow SSH from Bastion'
-      VpcId: !Ref MyVPC
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 22
-          ToPort: 22
-          SourceSecurityGroupId: !Ref BastionSG
-
-  # AppInstance1B
-  AppInstance1B:
-    Type: 'AWS::EC2::Instance'
-    Properties:
-      InstanceType: t2.micro
-      ImageId: ami-01816d07b1128cd2d
-      SubnetId: !Ref AppPrivateSubnet1B
-      SecurityGroupIds:
-        - !Ref EC2App1bSG
-      Tags:
-        - Key: Name
-          Value: EC2App1B
-
-  # EC2App1bSG
-  EC2App1bSG:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupDescription: 'Allow ICMP Ping from App1A'
-      VpcId: !Ref MyVPC
-      SecurityGroupIngress:
-        - IpProtocol: icmp
-          FromPort: -1
-          ToPort: -1
-          SourceSecurityGroupId: !Ref EC2App1aSG
+          Value: WebServerInstance1B
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum install -y httpd
+          systemctl start httpd
+          systemctl enable httpd
+          echo "Hello from My Web Server 1B" > /var/www/html/index.html
