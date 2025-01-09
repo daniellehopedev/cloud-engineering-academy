@@ -37,6 +37,12 @@
   - The policy will allow access to the object
 - The bucket will be used to host a static index.html page
   - [index.html](/cloudformation-project/exercises/index.html)
-- Code: [s3-static.yaml](/cloudformation-project/exercises/s3-static.yaml.yaml)
+- Code: [s3-static.yaml](/cloudformation-project/exercises/s3-static.yaml)
 - Architecture: ![S3 Static Web Page Storage](/cloudformation-project/images/cloudformation-s3.png)
 - Other simple s3 bucket creation: [s3-bucket-exercise.yaml](/cloudformation-project/exercises/s3-bucket-exercise.yaml)
+
+#### Exercise - Create RDS Instance
+
+- Created an RDS instance configured with username and password.
+- Instance will be a MySQL RDS instance
+- Code: [rds.yaml](/cloudformation-project/exercises/rds.yaml)
