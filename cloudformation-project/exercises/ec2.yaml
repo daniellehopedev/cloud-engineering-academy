@@ -129,7 +129,7 @@ Resources:
         - !Ref PublicSubnet1A
         - !Ref PublicSubnet1B
       SecurityGroups:
-        - !Ref WebServerSecurityGroup # not created yet
+        - !Ref WebServerSecurityGroup
 
   # Target Group for ALB
   MyTargetGroup:
