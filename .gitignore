@@ -1,0 +1,42 @@
+# Local Terraform directories
+.terraform/
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Exclude overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Exclude CLI configuration files
+.terraformrc
+terraform.rc
+
+# Sensitive variable files ignored
+*.tfvars
+*.tfvars.json
+
+# Node.js dependencies
+node_modules/
+
+# Local build output
+.next/
+out/
+
+# Static exports
+out/
+
+# Debug output
+*.log
+
+# Temporary files
+*.tmp
+*.temp
