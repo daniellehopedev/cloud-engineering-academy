@@ -7,3 +7,5 @@ This repo will have the projects built in Cloud Engineering Academy.
 [Terraform Project - Deploy Website to S3 and Serve From CloudFront](/terraform-portfolio-project/)
 
 [Simple GitHub Actions Workflow Example](https://github.com/daniellehopedev/github-actions-workflow)
+
+[GitHub Actions Workflow - Deploy Lambda Function](https://github.com/daniellehopedev/lambda-cicd)
