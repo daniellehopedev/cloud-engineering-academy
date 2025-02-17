@@ -8,4 +8,6 @@ This repo will have the projects built in Cloud Engineering Academy.
 
 [Simple GitHub Actions Workflow Example](https://github.com/daniellehopedev/github-actions-workflow)
 
-[GitHub Actions Workflow - Deploy Lambda Function](https://github.com/daniellehopedev/lambda-cicd)
+[GitHub Actions Workflow - Deploy Lambda Function](https://github.com/daniellehopedev/github-actions-cicd-workflows)
+
+[GitHub Actions Workflow - CloudFormation CICD](https://github.com/daniellehopedev/github-actions-cicd-workflows)
