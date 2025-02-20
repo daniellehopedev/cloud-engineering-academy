@@ -11,3 +11,5 @@ This repo will have the projects built in Cloud Engineering Academy.
 [GitHub Actions Workflow - Deploy Lambda Function](https://github.com/daniellehopedev/github-actions-cicd-workflows?tab=readme-ov-file#lambda---cicd-workflow)
 
 [GitHub Actions Workflow - CloudFormation CICD](https://github.com/daniellehopedev/github-actions-cicd-workflows?tab=readme-ov-file#pr-event---cicd-for-cloudformation-test-stacks)
+
+[Serverless Workshop - Simple Lambda Function](/serverless-workshop/)
