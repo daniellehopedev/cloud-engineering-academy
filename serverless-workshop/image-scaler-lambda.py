@@ -1,5 +1,7 @@
 import json
 import boto3
+from PIL import Image
+from io import BytesIO
 
 def lambda_handler(event, context):
     try:
@@ -18,17 +20,28 @@ def lambda_handler(event, context):
         response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
         object_content = response['Body'].read()
 
-        # For learning purposes, we are simply just uploading the same content with an updated Key
-        # But for actual resizing there would be other more complex steps to take, you would put that code here
-        # Could use a library like PIL for resizing and io for saving the image Bytes
+        # Open image and resize it
+        image = Image.open(BytesIO(object_content))
+        image = image.resize((500, 500))
 
-        resized_response = s3_client.put_object(Bucket=bucket_name, Key=f"resized/{object_key}", Body=object_content)
+        # Convert image back to bytes
+        resized_buffer = BytesIO()
+        image.save(resized_buffer, format="JPEG") # save image in original format
+        resized_buffer.seek(0) # set pointer back to the beginning of the buffer
+
+        # Upload the resized image to the S3 Bucket in /resized directory
+        resized_response = s3_client.put_object(
+          Bucket=bucket_name,
+          Key=f"resized/{object_key}_500_500.jpg",
+          Body=resized_buffer,
+          ContentType='image/jpeg'
+        )
 
         print(f"Resized Response: {resized_response}")
 
         return {
             'statusCode': 200,
-            'body': json.dumps('Object processed successfully!')
+            'body': json.dumps('Image resized successfully!')
         }
     except Exception as ex:
         print(f"Error: {ex}")
