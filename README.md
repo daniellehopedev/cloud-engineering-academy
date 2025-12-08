@@ -15,3 +15,5 @@ This repo will have the projects built in Cloud Engineering Academy.
 [Serverless Workshop - Image Scaler Lambda Function](/serverless-workshop/)
 
 [Programming Fundamentals - Python](/programming-fundamentals/)
+
+[Automation with TypeScript](/automation-with-typescript/)
