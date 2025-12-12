@@ -68,7 +68,7 @@ This practice started when they were moving quickly to launch, but now their CTO
 
 ### Notes
 
-1. ![StartupCo Architecture](/architecture/initial-architecture.png)
+1. ![StartupCo Architecture](/portfolio-projects/identity-and-access-management/architecture/initial-architecture.png)
 2. This actually means Secure the "Management Account".
    The Management Account is created when you initially set up your AWS Account and it has a Root User, it is technically created inside of an AWS Organization. MFA can be enabled for more security.
    The Root User is not to be used for day to day activity, it is ideal to create an Admin User.
@@ -85,4 +85,6 @@ This practice started when they were moving quickly to launch, but now their CTO
    With the "job function" policies there could be instances where you can give someone access that they don't really need.
    A strong password policy can be attached at the account level, so it is enabled for all of the users within that account.
 
-![IAM Architecture](/architecture/ideal-iam-architecture.png)
+### IAM Architecture
+
+![IAM Architecture](/portfolio-projects/identity-and-access-management/architecture/ideal-iam-architecture.png)
