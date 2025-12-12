@@ -88,3 +88,5 @@ This practice started when they were moving quickly to launch, but now their CTO
 ### IAM Architecture
 
 ![IAM Architecture](/portfolio-projects/identity-and-access-management/architecture/ideal-iam-architecture.png)
+
+[Terraform Code](/portfolio-projects/identity-and-access-management/terraform-iam)
