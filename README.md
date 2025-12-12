@@ -17,3 +17,5 @@ This repo will have the projects built in Cloud Engineering Academy.
 [Programming Fundamentals - Python](/programming-fundamentals/)
 
 [Automation with TypeScript](/automation-with-typescript/)
+
+[Portfolio Projects](/portfolio-projects)
